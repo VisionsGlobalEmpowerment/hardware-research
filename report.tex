@@ -76,7 +76,9 @@ functionality blocked.
 \chapter{Client-side}
 
 Generally, standard parental control function is enough to provide the
-necessary security level for children.
+necessary security level for children. Currently the configuration
+process is manual and there is no way provided to ensure that multiple
+devices will be configured alike.
 
 
 \part{Project details}
@@ -127,6 +129,11 @@ feature that may prevent the unauthorized user from device reset -
 in case the device reset is performed without correct password - the
 device may turn into brick and become nearly irreparable (may be
 solved only by reflashing new OS on device).
+
+The setup is point-and-click as for now so it won't work in case of
+hundreds and thousands of devices but there is some ways (like using
+Termux with configuration deployment tools) which must be investiated
+further.
 
 
 \section{Authentication}
