@@ -1,15 +1,16 @@
 %!TEX encoding = UTF-8 Unicode
-\documentclass[a4paper, sans, booktabs, totpages, english]{report}
+\documentclass[a4paper]{report}
 \usepackage[utf8]{inputenc}
 \usepackage[a4paper, left=3cm, right=0.5 cm, top=0.5cm, bottom=0.5cm]{geometry}
 \usepackage{graphicx}
+
+\setcounter{tocdepth}{2}
 
 \begin{document}
 \title{Hardware implementation report}
 \author{Igor Chudov}
 \date{April 2019}
 \maketitle
-
 
 \begin{abstract}
 The document describes the networking environment and end-user device
@@ -136,6 +137,27 @@ The setup is point-and-click as for now so it won't work in case of
 hundreds and thousands of devices but there is some ways (like using
 Termux with configuration deployment tools) which must be investiated
 further.
+
+
+\subsection{Note on bypassing parental control function}
+
+The problem boils down to graphical key bypass. There are
+several ways to do it:
+
+\begin{enumerate}
+\item \textbf{Finding a graphical key}
+The device inspected (Lenovo TB-7304i) had unlimited amount of
+graphical key tries. The device makes 30-second pause each 10 tries.
+
+It's possible to guess the key by inspecting traces left by fingers.
+There are not very many variants of graphical key the user may remember
+\item \textbf{Hard reset}
+\item \textbf{Remote unblock using Google account}
+It's possible to unblock the device remotely in case the Google account
+is accessible.
+\item \textbf{Nonstandard ways}
+The user will have to preinstall special applications first.
+\end{enumerate}
 
 
 \section{Authentication}
