@@ -74,7 +74,20 @@ functionality blocked.
 
 \chapter{Overview}
 
+There were two devices used for testing and investigation:
+\textbf{Lenovo TB-7304i} and \textbf{Alldocube T1006S}. The devices
+tested had notable differences in Android OS configurations so it
+will be hard to maintain the same level of functionality across
+different hardware models.
+
 \chapter{Server-side}
+
+Devices may be configured via \textbf{ADB over Wi-Fi} after some initial
+setup and that functionality may be useful for configuration deployment
+on multiple machines, but this case needs more investigation.
+
+This functionality may be used not only for initial deployment but also
+for massive device reset/rollback without interaction with users.
 
 \chapter{Client-side}
 
@@ -82,6 +95,29 @@ Generally, standard parental control function is enough to provide the
 necessary security level for children. Currently the configuration
 process is manual and there is no way provided to ensure that multiple
 devices will be configured alike.
+
+Unfortunately \textbf{Alldocube T1006S} model provided had
+\textbf{"Restricted profile"} functionality turned off making it
+unsuitable for the task in device's unmodified state.
+
+
+\chapter{Risks}
+
+\begin{itemize}
+\item \textbf{Current model with supposed software and/or user reset
+done by a person won't work} because each setup takes lots of time and
+is error-prone. This will lead to numerous setup errors and the project
+will have all chances to stop because of this.
+\item \textbf{There is a need for a single device model} because different
+models from different vendors differs too much. This will lead to
+growth of instructions, workarounds, tests and incur numerous problems
+for product developers.
+\item \textbf{Tests on Lenovo TB-7304i shown that Google Chrome is
+inaccessible for Restricted Profiles} so the developers will have to
+test the product with Android's \textbf{"Safe Browser"}. The problem
+may be solved by lower-level Android OS configuration but this case
+needs more investigation.
+\end{itemize}
 
 
 \part{Project details}
@@ -94,7 +130,7 @@ to reduce problems with client devices.
 
 \section{Authentication}
 
-There is software for WiFi HotSpots fencing called CoovaChilli:
+There is software for WiFi HotSpots fencing called \textbf{CoovaChilli}:
 http://coova.github.io/CoovaChilli/ . It's abandoned somehow but it's
 the most functional solution for organizing fenced connection of
 multiple users.
@@ -105,11 +141,6 @@ multiple users.
 Tasks like filtering the undesired traffic are also done better from
 the server side - it'll be possible to avoid such problems like
 adjusting tablets for this kind of work.
-
-
-\section{Accounting}
-
-If needed. WIP.
 
 
 \chapter{End user side}
@@ -170,13 +201,7 @@ on server side.
 \section{Rollbacks}
 
 Android's new filesystem F2FS has snapshot and rollback functionality
-but it must be investigated if it's used by existing devices. The
-rollb
-
-
-\section{Upgrades}
-
-WIP
+but it must be investigated if it's used by existing devices.
 
 
 \section{Threat model}
@@ -192,6 +217,8 @@ Here is the list of treats we're trying to mitigate:
 
 \begin{itemize}
 \item Getting full control on device by its end-user.
+\item Getting sensitive personal information from device's
+\textbf{"Emergency Information"}.
 \end{itemize}
 
 
