@@ -1,3 +1,4 @@
 all: report.tex
-	pdflatex --output-directory=${.CURDIR} "\include{report}"
+	pdflatex --output-directory=${.CURDIR} report.tex
+	#"\include{report}"
 

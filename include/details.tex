@@ -1,0 +1,181 @@
+%!TEX encoding = UTF-8 Unicode
+\part{Project details}
+
+\chapter{Server side}
+
+It's advised to have as much functionality on server-side as possible
+to reduce problems with client devices.
+
+
+\section{Authentication}
+
+There is software for WiFi HotSpots fencing called \textbf{CoovaChilli}:
+http://coova.github.io/CoovaChilli/ . It's abandoned somehow but it's
+the most functional solution for organizing fenced connection of
+multiple users.
+
+
+\section{Authorization}
+
+Tasks like filtering the undesired traffic are also done better from
+the server side - it'll be possible to avoid such problems like
+adjusting tablets for this kind of work.
+
+
+\section{Configuration deployment}
+
+It is possilbe to create multiple user profiles from \textbf{ADB}
+(Android Debug Bridge) but profile editing functionality needs more
+investigation.
+
+
+\chapter{End user side}
+
+It's expected that the target audience is totally inexperienced with
+computers so the less actions they will need to do to achieve the
+desired result - the better.
+
+
+\section{Devices}
+
+There was investigation performed about which devices are popular and
+may be used for the project. The devices that were considered "suitable
+for project needs" are:
+
+\begin{longtable}{|l|l|l|}
+\hline
+\textbf{Device Model} & \textbf{Device Characteristics} & \textbf{Comment} \\
+\hline
+Dexp Ursus S170i Kid's &
+	\vbox{
+		\hbox{\strut 7"}
+		\hbox{\strut 1280x800}
+		\hbox{\strut Android 7}
+		\hbox{\strut 1 RAM/8 HDD}
+		\hbox{\strut 3000 mAh}} &
+	Preconfigured for parental control and has rubber frame \\
+\hline
+Huawei MediaPad T3 7.0 &
+	\vbox{
+		\hbox{\strut 7"}
+		\hbox{\strut 1024x600}
+		\hbox{\strut Android 6}
+		\hbox{\strut 1 RAM/8 HDD}
+		\hbox{\strut 3100 mAh}} & \\
+\hline
+Irbis TZ968 &
+	\vbox{
+		\hbox{\strut 9.6"}
+		\hbox{\strut 1280x800}
+		\hbox{\strut Android 7}
+		\hbox{\strut 1 RAM/8 HDD}
+		\hbox{\strut 4700 mAh}} & \\
+\hline
+Dexp Ursus P410 &
+	\vbox{
+		\hbox{\strut 10.1"}
+		\hbox{\strut 1280x800}
+		\hbox{\strut Android 8}
+		\hbox{\strut 1 RAM/16 HDD}
+		\hbox{\strut 5000 mAh}} & \\
+\hline
+\end{longtable}
+
+Among multiple competitors the \textbf{Dexp Ursus S170i Kid's} model
+considered interesting because of preconfiguration for parental control
+and rubber frame.
+
+Most of devices under \$ 100 have nearly same pararmeters so there is
+nothing to choose from.
+
+
+\section{Access limiting}
+
+Android's standard profiles and parental control function is enough to
+limit the end-user access to programs and whitelisted websites.
+
+The account of the device owner may be protected by graphical key
+making it rather problematic to crack.
+
+It should also be noted that modern Android versions have device control
+feature that may prevent the unauthorized user from device reset -
+in case the device reset is performed without correct password - the
+device may turn into brick and become nearly irreparable (may be
+solved only by reflashing new OS on device).
+
+The setup is point-and-click as for now so it won't work in case of
+hundreds and thousands of devices but there is some ways (like using
+Termux with configuration deployment tools) which must be investiated
+further.
+
+
+\subsection{Note on bypassing parental control function}
+
+The problem boils down to graphical key bypass. There are
+several ways to do it:
+
+\begin{enumerate}
+\item \textbf{Finding a graphical key}
+The device inspected (Lenovo TB-7304i) had unlimited amount of
+graphical key tries. The device makes 30-second pause each 10 tries.
+
+It's possible to guess the key by inspecting traces left by fingers.
+There are not very many variants of graphical key the user may remember
+\item \textbf{Hard reset}
+\item \textbf{Remote unblock using Google account}
+It's possible to unblock the device remotely in case the Google account
+is accessible.
+\item \textbf{Nonstandard ways}
+The user will have to preinstall special applications first.
+\end{enumerate}
+
+
+\subsection{Software for parental control}
+
+There were multiple products (paid and free) tested but all products
+have different limitations:
+
+\begin{itemize}
+\item \textbf{Kaspersky Safe Kids} - May be deinstalled by children;
+\item \textbf{Norton Family} - Blocks websites only in "Safe Browser";
+\item \textbf{Dr. Web Security Space} - Requires Internet access for
+control purposes.
+\end{itemize}
+
+Other software is not functional enough to compete with programs
+mentioned.
+
+The conclusion is: Spending money on additional software does not
+worth it for the project.
+
+
+\section{Authentication}
+
+Done transparently when device is connected to HotSpot via MAC. The
+authentication and authorization is performed by CoovaChilli software
+on server side.
+
+
+\section{Rollbacks}
+
+Android's new filesystem F2FS has snapshot and rollback functionality
+but it must be investigated if it's used by existing devices.
+
+
+\section{Threat model}
+
+There is two kind of threats we expect:
+
+\begin{enumerate}
+\item Treats from external network: miners, viruses, etc.
+\item Treats from users: curios children
+\end{enumerate}
+
+Here is the list of treats we're trying to mitigate:
+
+\begin{itemize}
+\item Getting full control on device by its end-user.
+\item Getting sensitive personal information from device's
+\textbf{"Emergency Information"}.
+\end{itemize}
+
